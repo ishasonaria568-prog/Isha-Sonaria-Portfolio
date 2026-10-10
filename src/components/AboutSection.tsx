@@ -1,119 +1,107 @@
 import React from 'react';
+import { personalProfile, aboutCards } from '../data/portfolioData';
 import {
-  ShieldAlert,
-  Search,
-  Code,
-  Terminal,
-  Activity,
-  FileCheck,
-  CheckCircle,
-  ArrowRight
+  MapPin,
+  GraduationCap,
+  Shield,
+  Target,
+  ArrowRight,
+  CheckCircle2,
+  FileText
 } from 'lucide-react';
 
 interface AboutSectionProps {
   onNavigate?: (sectionId: string) => void;
+  onOpenResume?: () => void;
 }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
+export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate, onOpenResume }) => {
+  const getCardIcon = (type: string) => {
+    switch (type) {
+      case 'location':
+        return <MapPin className="w-5 h-5 text-[#2563EB]" />;
+      case 'education':
+        return <GraduationCap className="w-5 h-5 text-[#2563EB]" />;
+      case 'focus':
+        return <Shield className="w-5 h-5 text-[#059669]" />;
+      case 'goal':
+        return <Target className="w-5 h-5 text-[#059669]" />;
+      default:
+        return <Shield className="w-5 h-5 text-[#2563EB]" />;
+    }
+  };
+
   return (
-    <section id="about" className="py-16 sm:py-24 border-b border-[#231F3D] relative bg-[#0B0A14]">
+    <section id="about" className="py-16 sm:py-24 bg-white border-b border-[#E2E8F0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
-        <div className="max-w-3xl">
-          <span className="text-xs font-semibold text-[#8B5CF6] uppercase tracking-wider font-mono">
-            Background &amp; Approach
+        {/* Section Header */}
+        <div className="max-w-3xl mb-12">
+          <span className="text-xs font-semibold text-[#2563EB] uppercase tracking-wider font-mono">
+            Candidate Profile
           </span>
-          <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-[#F8FAFC] tracking-tight">
-            Building Practical Security Skills Through Systematic Investigation
+          <h2 className="mt-2 text-3xl sm:text-4xl font-display font-bold text-[#0F172A] tracking-tight">
+            About Me
           </h2>
-          <p className="mt-4 text-base text-[#A1A1AA] leading-relaxed">
-            I am an aspiring cybersecurity analyst pursuing SOC L1 and Blue Team defensive roles. Rather than relying purely on theory, I build technical competence through hands-on lab environments, realistic incident scenarios, and engineering custom tools that address practical security workflows.
+          <p className="mt-4 text-base sm:text-lg text-[#64748B] leading-relaxed">
+            I am an aspiring cybersecurity analyst focused on defensive security, SOC Tier-1 operations, and practical vulnerability assessment. Rather than relying solely on theoretical study, I develop technical capabilities through continuous hands-on labs, CTF challenges, and engineering real-world defensive tools.
+          </p>
+          <p className="mt-3 text-sm sm:text-base text-[#64748B] leading-relaxed">
+            My training encompasses real-time event monitoring with Wazuh SIEM, deep packet inspection in Wireshark, active reconnaissance with Nmap and Nuclei, and custom software development in Python and Go. I aim to contribute immediate investigative value to a Security Operations Center or Blue Team.
           </p>
         </div>
 
-        {/* 3 Core Focus Pillars */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Pillar 1: SOC & Blue Team Fundamentals */}
-          <div className="sec-card p-6 flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#17142E] border border-[#231F3D] flex items-center justify-center text-[#8B5CF6] mb-5">
-                <ShieldAlert className="w-5 h-5" />
+        {/* 4 Clean Information Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {aboutCards.map((card, idx) => (
+            <div
+              key={idx}
+              className="p-6 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] shadow-xs hover:shadow-md hover:border-[#CBD5E1] transition-all flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-10 h-10 rounded-lg bg-white border border-[#E2E8F0] flex items-center justify-center mb-4 shadow-xs">
+                  {getCardIcon(card.type)}
+                </div>
+                <span className="text-xs font-mono font-semibold text-[#64748B] uppercase tracking-wider block">
+                  {card.title}
+                </span>
+                <h3 className="mt-1 text-base font-display font-bold text-[#0F172A]">
+                  {card.value}
+                </h3>
               </div>
-              <h3 className="text-lg font-display font-bold text-[#F8FAFC]">
-                SOC Operations &amp; Alert Triage
-              </h3>
-              <p className="mt-3 text-sm text-[#A1A1AA] leading-relaxed">
-                Practicing structured Tier-1 triage: distinguishing false positives from actionable threats, analyzing Windows Event IDs (such as 4624/4625 for logon tracking), and understanding the full incident escalation lifecycle.
+              <p className="mt-4 pt-3 border-t border-[#E2E8F0] text-xs text-[#64748B] leading-relaxed">
+                {card.detail}
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-[#231F3D] text-xs font-mono text-[#22D3EE]">
-              Focus: Wazuh SIEM · Syslog · Event Correlation
-            </div>
-          </div>
-
-          {/* Pillar 2: Threat Detection & Digital Forensics */}
-          <div className="sec-card p-6 flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#17142E] border border-[#231F3D] flex items-center justify-center text-[#22D3EE] mb-5">
-                <Search className="w-5 h-5" />
-              </div>
-              <h3 className="text-lg font-display font-bold text-[#F8FAFC]">
-                Threat Detection &amp; Forensics
-              </h3>
-              <p className="mt-3 text-sm text-[#A1A1AA] leading-relaxed">
-                Investigating attack telemetry at the transport and packet layers. Hands-on analysis of multi-hop email headers, SPF/DKIM/DMARC records, malicious PDF object streams, and Wireshark PCAP stream reconstruction.
-              </p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-[#231F3D] text-xs font-mono text-[#8B5CF6]">
-              Focus: Wireshark · Email MIME · DFIR Tooling
-            </div>
-          </div>
-
-          {/* Pillar 3: Tooling & Practical Automation */}
-          <div className="sec-card p-6 flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#17142E] border border-[#231F3D] flex items-center justify-center text-[#8B5CF6] mb-5">
-                <Code className="w-5 h-5" />
-              </div>
-              <h3 className="text-lg font-display font-bold text-[#F8FAFC]">
-                Defensive Tooling &amp; Automation
-              </h3>
-              <p className="mt-3 text-sm text-[#A1A1AA] leading-relaxed">
-                Engineering custom scripts and utilities in Python and Go to automate repetitive analyst tasks, extract static features from suspicious links, and enforce tamper-resistant data verification.
-              </p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-[#231F3D] text-xs font-mono text-[#22D3EE]">
-              Focus: Python · Go · FastAPI · Scikit-Learn
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* Practical Methodology Banner */}
-        <div className="mt-10 p-6 sm:p-8 rounded-2xl bg-[#121024] border border-[#231F3D] grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div className="lg:col-span-8 space-y-2">
-            <h4 className="text-base font-display font-bold text-[#F8FAFC]">
-              My Operational Philosophy: Evidence Over Guesswork
+        {/* Investigative Philosophy Box */}
+        <div className="mt-10 p-6 sm:p-8 rounded-2xl bg-[#F1F5F9] border border-[#E2E8F0] flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="space-y-1.5 max-w-2xl">
+            <h4 className="text-base font-display font-bold text-[#0F172A]">
+              Defensive Methodology: Systematic Investigation Over Assumptions
             </h4>
-            <p className="text-sm text-[#A1A1AA] leading-relaxed">
-              Every alert investigation must follow a methodical, reproducible process: observe normal baseline traffic, gather raw artifacts without tampering, cross-reference indicators across independent sources, and document findings clearly for engineering and response teams.
+            <p className="text-sm text-[#64748B] leading-relaxed">
+              Every alert investigation must follow reproducible steps: observe baseline traffic, extract uncorrupted telemetry, correlate with host and network artifacts, and document findings with clear remediation recommendations.
             </p>
           </div>
-          <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
             {onNavigate && (
               <button
-                onClick={() => onNavigate('projects')}
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white bg-[#8B5CF6] hover:bg-[#7C3AED] transition-all cursor-pointer"
+                onClick={() => onNavigate('experience')}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold text-white bg-[#2563EB] hover:bg-[#1D4ED8] transition-all cursor-pointer shadow-xs"
               >
-                <span>View Engineering Projects</span>
+                <span>View Training History</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             )}
-            {onNavigate && (
+            {onOpenResume && (
               <button
-                onClick={() => onNavigate('tryhackme')}
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-[#F8FAFC] bg-[#17142E] border border-[#231F3D] hover:border-[#8B5CF6]/40 transition-all cursor-pointer"
+                onClick={onOpenResume}
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-semibold text-[#0F172A] bg-white border border-[#E2E8F0] hover:bg-[#F8FAFC] transition-all cursor-pointer shadow-xs"
               >
-                <span>Review TryHackMe Record</span>
+                <FileText className="w-3.5 h-3.5 text-[#2563EB]" />
+                <span>View Full Resume</span>
               </button>
             )}
           </div>

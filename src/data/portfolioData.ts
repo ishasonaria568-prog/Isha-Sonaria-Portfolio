@@ -1,4 +1,5 @@
-// Verified Isha Sonaria Cybersecurity Portfolio Data — Aligned with Official Resume
+// Official Isha Sonaria Cybersecurity Portfolio Data
+// Verified & aligned with Candidate Resume & Credentials
 
 export interface PersonalProfile {
   name: string;
@@ -35,7 +36,7 @@ export interface ProjectItem {
   keyHighlights: string[];
   githubUrl: string;
   liveUrl?: string;
-  image?: string;
+  stats?: { label: string; value: string }[];
   caseStudy?: {
     overview: string;
     threatModel: string[];
@@ -56,10 +57,12 @@ export interface Certification {
   competencies: string[];
 }
 
-export interface ThmAchievement {
-  name: string;
+export interface AchievementItem {
+  id: string;
+  title: string;
+  subtitle: string;
   category: string;
-  description: string;
+  metric?: string;
   highlight?: boolean;
 }
 
@@ -67,11 +70,7 @@ export interface SkillCategory {
   id: string;
   category: string;
   description: string;
-  skills: {
-    name: string;
-    role: string;
-    proficiency: 'Practical' | 'Working Knowledge';
-  }[];
+  skills: string[];
 }
 
 export interface EducationInfo {
@@ -94,11 +93,65 @@ export const personalProfile: PersonalProfile = {
   phone: "+91 7096495430",
   email: "ishasonaria568@gmail.com",
   github: "https://github.com/ishasonaria568-prog",
-  linkedin: "https://www.linkedin.com/in/isha-sonaria",
+  linkedin: "https://linkedin.com/in/isha-sonaria",
   tryhackme: "https://tryhackme.com/p/CipherGhost24",
   educationSummary: "BCA · 8.30/10 CGPA · Sem 1 Rank 1",
   status: "Seeking Entry-Level SOC / Cybersecurity Analyst Role",
 };
+
+export const heroStats = [
+  {
+    label: "TryHackMe Global Rank",
+    value: "Top 2%",
+    description: "Worldwide competitive standing",
+    badge: "Global Ranking",
+  },
+  {
+    label: "Completed Security Labs",
+    value: "100+",
+    description: "Hands-on labs & SOC scenarios",
+    badge: "Verified Practice",
+  },
+  {
+    label: "BCA CGPA",
+    value: "8.30/10",
+    description: "Semester 1 Rank 1 Honors",
+    badge: "Academic Merit",
+  },
+  {
+    label: "Cybersecurity Projects",
+    value: "4",
+    description: "Open-source defensive tools",
+    badge: "Engineered Tools",
+  },
+];
+
+export const aboutCards = [
+  {
+    title: "Location",
+    value: "Veraval, Gujarat, India",
+    detail: "Available for remote & on-site positions",
+    type: "location",
+  },
+  {
+    title: "Education",
+    value: "Bachelor of Computer Applications",
+    detail: "Bhakta Kavi Narsinh Mehta University (8.30 CGPA)",
+    type: "education",
+  },
+  {
+    title: "Focus",
+    value: "SOC Operations & Network Security",
+    detail: "Threat monitoring, log triage, forensics, VAPT",
+    type: "focus",
+  },
+  {
+    title: "Career Goal",
+    value: "Entry-Level Cybersecurity Analyst",
+    detail: "Targeting SOC L1, Blue Team, and Defense roles",
+    type: "goal",
+  },
+];
 
 export const practicalExperiences: PracticalExperience[] = [
   {
@@ -106,11 +159,12 @@ export const practicalExperiences: PracticalExperience[] = [
     role: "SOC Operations Trainee",
     organization: "VRSecurity",
     program: "Cyber Security Fundamentals Program",
-    period: "Apr 2026 – Sep 2026",
+    period: "April 2026 – September 2026",
     badge: "GRAND MASTER",
     points: [
-      "Monitored security events in Wazuh SIEM; prioritized and escalated malicious network anomalies.",
-      "Ran reconnaissance with Nmap, Nikto, Nuclei, and Wireshark to find exposed ports and vulnerable services.",
+      "Monitored security events in Wazuh SIEM and prioritized or escalated malicious network anomalies.",
+      "Conducted reconnaissance using Nmap, Nikto, Nuclei, and Wireshark.",
+      "Identified exposed ports and potentially vulnerable services.",
     ],
   },
   {
@@ -120,61 +174,105 @@ export const practicalExperiences: PracticalExperience[] = [
     period: "Continuous Practice",
     badge: "Top 2% Globally",
     points: [
-      "Completed 100+ labs: SOC L1 alert triage, network exploitation, web security, Linux privilege escalation.",
-      "Rank 1 in Bronze, Silver, Gold leagues; 20+ badges, 100+ day streak.",
+      "Top 2% globally on TryHackMe platform.",
+      "Completed 100+ cybersecurity labs.",
+      "Practiced SOC L1 alert triage, network exploitation, web security, and Linux privilege escalation.",
+      "Rank 1 in Bronze, Silver, and Gold leagues.",
+      "Earned 20+ badges and maintained a 100+ day streak.",
     ],
   },
 ];
 
-export const tryHackMeData = {
-  profileUrl: "https://tryhackme.com/p/CipherGhost24",
-  username: "CipherGhost24",
-  roomsCompleted: 147,
-  badgesEarned: 23,
-  streakDays: 105,
-  globalRank: "Top 2%",
-  leagues: [
-    { title: "Bronze League", position: "Rank 1", note: "Promoted to Silver" },
-    { title: "Silver League", position: "Rank 1", note: "Promoted to Gold" },
-    { title: "Gold League", position: "Rank 1", note: "Competitive league winner" },
-  ],
-  verifiedAchievements: [
-    { name: "Bronze League — 1st Place", category: "Leagues", description: "Finished 1st place in TryHackMe weekly competitive Bronze League.", highlight: true },
-    { name: "Silver League — 1st Place", category: "Leagues", description: "Finished 1st place in TryHackMe weekly competitive Silver League.", highlight: true },
-    { name: "Gold League — 1st Place", category: "Leagues", description: "Promoted and took 1st place in TryHackMe competitive Gold League.", highlight: true },
-    { name: "105-Day Active Streak", category: "Dedication", description: "Maintained continuous daily hands-on problem-solving in security labs.", highlight: true },
-    { name: "100% True Positive Rate", category: "SOC & Defense", description: "Accurately triaged detection alerts without missing malicious indicators.", highlight: true },
-    { name: "First Alert Closed", category: "SOC & Defense", description: "Completed investigation and closed initial security alert in SOC lab scenario.", highlight: true },
-    { name: "Logging Legend", category: "SOC & Defense", description: "Analyzed security event logs, syslogs, and Windows event IDs for anomaly detection.", highlight: false },
-    { name: "OWASP Top 10", category: "Web Security", description: "Demonstrated practical exploitation and remediation of core web vulnerabilities.", highlight: true },
-    { name: "OhSINT", category: "OSINT", description: "Executed open-source intelligence gathering to trace threat actor footprints.", highlight: false },
-  ],
-  focusAreas: [
-    "SOC L1 Alert Triage & Incident Workflow",
-    "Deep Packet Inspection & Network Forensics",
-    "Endpoint & Syslog Anomaly Investigation",
-    "OWASP Web Security Testing & Remediation",
-  ],
-};
+export const skillCategoriesData: SkillCategory[] = [
+  {
+    id: "networking-security",
+    category: "Networking & Security",
+    description: "Layered architecture, fundamental transport protocols, address translation, and network perimeter mapping.",
+    skills: [
+      "TCP/IP",
+      "OSI Model",
+      "DNS",
+      "DHCP",
+      "HTTP/HTTPS",
+      "SSH",
+      "FTP",
+      "Subnetting",
+      "Port Scanning",
+    ],
+  },
+  {
+    id: "soc-threat-defense",
+    category: "SOC & Threat Defense",
+    description: "Real-time security telemetry monitoring, incident response workflows, event correlation, and digital forensics.",
+    skills: [
+      "Wazuh SIEM",
+      "Alert Triage",
+      "Incident Response",
+      "Network Traffic Analysis",
+      "Digital Forensics",
+      "Email Forensics",
+      "VAPT",
+      "IOC Extraction",
+      "OSINT",
+    ],
+  },
+  {
+    id: "security-tools",
+    category: "Security Tools",
+    description: "Industry-standard diagnostic, packet inspection, network discovery, and security testing toolkits.",
+    skills: [
+      "Wireshark",
+      "Nmap",
+      "Burp Suite",
+      "Metasploit",
+      "SQLmap",
+      "Nikto",
+      "Nuclei",
+      "WPScan",
+      "Hydra",
+      "Kali Linux",
+    ],
+  },
+  {
+    id: "programming-scripting",
+    category: "Programming & Scripting",
+    description: "Defensive tool engineering, log analysis scripting, automated scanners, and high-performance parsers.",
+    skills: [
+      "Python",
+      "Go",
+      "Bash",
+      "PowerShell",
+      "C",
+      "C++",
+      "Java",
+      "JavaScript",
+      "PHP",
+    ],
+  },
+];
 
 export const projectsData: ProjectItem[] = [
   {
     id: "phishguard-ml",
     name: "PhishGuard ML",
-    category: "Machine Learning / Phishing Detection",
-    tagline: "Offline ML-based Phishing URL Detection & Feature Anatomy Engine",
-    description: "Offline phishing URL detector using Random Forest and 16 static URL features. Classifies URLs as Safe, Suspicious, or Phishing; batch scans with CSV/JSON export and scan history. FastAPI + React app with SQLite storage and Docker support; no external API keys needed.",
-    image: "/src/assets/images/phishguard_ml_preview_1791611822868.jpg",
+    category: "Machine Learning / Threat Detection",
+    tagline: "Offline ML-based Phishing URL Detector",
+    description: "Offline phishing URL detector using Random Forest and 16 static URL features. Classifies URLs as Safe, Suspicious, or Phishing; supports batch scans with CSV/JSON export and scan history. Built with FastAPI, React, SQLite, and Docker with zero external API dependencies.",
     technologies: ["Python", "FastAPI", "scikit-learn", "React", "SQLite", "Docker"],
     keyHighlights: [
       "Offline phishing URL detector using Random Forest and 16 static URL features",
-      "Classifies URLs as Safe, Suspicious, or Phishing",
-      "Batch scans with CSV/JSON export and local scan history",
+      "Safe, Suspicious, or Phishing classification logic",
+      "Batch scans with CSV/JSON export and historical scan auditing",
       "FastAPI + React app with SQLite storage and Docker support",
-      "Zero external API keys needed (fully offline inference)",
+      "Zero external API keys required (fully self-contained inference)",
     ],
     githubUrl: "https://github.com/ishasonaria568-prog/phishguard-ml",
-    liveUrl: "https://phishguard-ml-six.vercel.app/",
+    liveUrl: "https://phishguard-ml-six.vercel.app",
+    stats: [
+      { label: "Features Extracted", value: "16 Static" },
+      { label: "Inference Mode", value: "100% Offline" },
+      { label: "Classifier", value: "Random Forest" },
+    ],
     caseStudy: {
       overview: "PhishGuard was built to address zero-hour phishing attacks where domains are registered minutes before a campaign and do not yet appear in public threat feeds. By evaluating the structural anatomy of the URL string directly, analysts can triage links safely in isolated environments.",
       threatModel: [
@@ -195,8 +293,8 @@ export const projectsData: ProjectItem[] = [
         "Structured transparent risk indicators so SOC L1 analysts can immediately understand why a URL was flagged.",
       ],
       testingAndValidation: [
-        "Benchmarked across mixed legitimate and malicious URL datasets, achieving 86.7% baseline accuracy on unseen samples.",
-        "Successfully flagged high-entropy typo-squatted banking URLs with under 15ms response latency.",
+        "Benchmarked across mixed legitimate and malicious URL datasets with rapid sub-15ms response latency.",
+        "Successfully flagged high-entropy typo-squatted banking URLs without false alarms on standard CDNs.",
       ],
     },
   },
@@ -204,19 +302,23 @@ export const projectsData: ProjectItem[] = [
     id: "email-header-forensics",
     name: "Email Header Forensics",
     category: "Digital Forensics / Email Security",
-    tagline: "Two-Tier Email Transport & Authentication Forensic Investigator",
-    description: "Go parser that extracts authentication records, sender domains, and mail-routing hops. Detects SPF, DKIM, DMARC failures and Reply-To mismatches; classifies IPv4/IPv6 hops. 0–100 risk score with JSON report export; works offline for local analysis.",
-    image: "/src/assets/images/email_header_preview_1791611835172.jpg",
-    technologies: ["Go", "JavaScript", "REST API", "HTML", "CSS", "Canvas"],
+    tagline: "Authentication & Transport Hop Forensic Analyzer",
+    description: "Analyzes sender domains, email authentication, mail-routing hops, and Reply-To mismatches. Detects SPF, DKIM, and DMARC failures, classifies IPv4/IPv6 transit hops, calculates a 0–100 risk score, and exports structured JSON forensic reports.",
+    technologies: ["Go", "JavaScript", "REST API"],
     keyHighlights: [
-      "Go parser that extracts authentication records, sender domains, and mail-routing hops",
-      "Detects SPF, DKIM, DMARC failures and Reply-To mismatches",
-      "Classifies IPv4/IPv6 hops and flags relay anomalies",
-      "0–100 risk score with JSON report export",
-      "Works offline in-browser for confidential local triage",
+      "Go parser analyzing sender domains, email authentication, and transit hops",
+      "Detects SPF, DKIM, DMARC failures and Return-Path / Reply-To mismatches",
+      "Visualizes mail-routing hops chronologically from origin to destination",
+      "0–100 risk score algorithm with comprehensive JSON report export",
+      "Works locally for confidential security triage without external data transit",
     ],
     githubUrl: "https://github.com/ishasonaria568-prog/email-header-forensics",
-    liveUrl: "https://email-header-forensics.vercel.app/",
+    liveUrl: "https://email-header-forensics.vercel.app",
+    stats: [
+      { label: "Core Parser", value: "Go (Golang)" },
+      { label: "Auth Checks", value: "SPF/DKIM/DMARC" },
+      { label: "Scoring Metric", value: "0–100 Risk" },
+    ],
     caseStudy: {
       overview: "Investigating business email compromise (BEC) and phishing requires precise tracking of intermediate mail transfer agents (MTAs). This tool delivers structured visibility into the message custody chain without requiring analysts to parse cryptic multi-hop headers manually.",
       threatModel: [
@@ -246,17 +348,22 @@ export const projectsData: ProjectItem[] = [
     id: "subscope",
     name: "SubScope",
     category: "Reconnaissance / Attack Surface",
-    tagline: "Automated Multithreaded Subdomain Enumeration & Surface Scanner",
-    description: "Multithreaded CLI for subdomain enumeration, DNS resolution, and HTTP/HTTPS verification. CSV and terminal reports for attack-surface mapping.",
-    technologies: ["Python", "Multithreading", "CLI", "DNS Resolver", "Requests"],
+    tagline: "Multithreaded Subdomain Enumeration & Service Probe",
+    description: "Multithreaded command-line reconnaissance utility for subdomain enumeration, asynchronous DNS resolution, and active HTTP/HTTPS service verification. Generates structured CSV and terminal reports for attack-surface mapping.",
+    technologies: ["Python", "Multithreading", "CLI"],
     keyHighlights: [
-      "Multithreaded CLI for automated subdomain enumeration",
-      "Asynchronous DNS resolution with wildcard filtering",
-      "HTTP/HTTPS service inspection & status probing",
-      "CSV and terminal reports for attack-surface mapping",
-      "High performance across large wordlists",
+      "Multithreaded CLI for high-speed automated subdomain enumeration",
+      "Asynchronous DNS resolution with wildcard record filtering",
+      "HTTP/HTTPS service inspection, status code extraction, and title probing",
+      "Clean CSV spreadsheet and terminal tabular attack surface reporting",
+      "Zero heavyweight external dependencies for clean Kali Linux operation",
     ],
     githubUrl: "https://github.com/ishasonaria568-prog/SubScope",
+    stats: [
+      { label: "Concurrency", value: "Multithreaded" },
+      { label: "Targeting", value: "DNS + HTTP(S)" },
+      { label: "Output", value: "CSV & Terminal" },
+    ],
     caseStudy: {
       overview: "SubScope bridges the gap between lightweight single-purpose DNS scripts and heavy, complex reconnaissance suites. It delivers fast, reliable, and false-positive-free attack surface mapping in both command-line environments and automated CI pipelines.",
       threatModel: [
@@ -285,20 +392,24 @@ export const projectsData: ProjectItem[] = [
   {
     id: "pdf-fortress",
     name: "PDF Fortress",
-    category: "Document Security / Forensics",
-    tagline: "Defensive PDF Analysis, Cryptographic Password Protection & Verification",
-    description: "CLI and GUI tool for PDF security with password protection. Verifies output to confirm PDFs are protected correctly, strips metadata, and analyzes streams.",
-    image: "/src/assets/images/pdf_fortress_preview_1791611847045.jpg",
-    technologies: ["Python", "CLI", "GUI", "PyMuPDF", "Cryptography"],
+    category: "Document Security & Cryptography",
+    tagline: "PDF Security, Password Protection & Verification",
+    description: "Defensive CLI and GUI utility for PDF password protection, document hardening, and output verification. Implements AES-256 encryption, scrubs sensitive author/EXIF metadata, and inspects object streams for dangerous actions.",
+    technologies: ["Python", "CLI", "GUI"],
     keyHighlights: [
       "CLI and GUI tool for PDF security with password protection",
       "Verifies output to confirm PDFs are protected correctly",
-      "Scans for malicious object streams (/JavaScript, /Launch)",
-      "Scrubs author and EXIF metadata leakage",
-      "AES-256 standard cryptographic encryption",
+      "Scans for malicious object streams (/JavaScript, /Launch actions)",
+      "Scrubs author and EXIF metadata to prevent information leakage",
+      "AES-256 standard cryptographic encryption with owner/user tiers",
     ],
     githubUrl: "https://github.com/ishasonaria568-prog/pdf-fortress",
-    liveUrl: "https://pdf-fortress.vercel.app/",
+    liveUrl: "https://pdf-fortress.vercel.app",
+    stats: [
+      { label: "Interfaces", value: "CLI & GUI" },
+      { label: "Encryption", value: "AES-256" },
+      { label: "Audit", value: "Stream & Metadata" },
+    ],
     caseStudy: {
       overview: "PDF Fortress was engineered as a dual-mode defensive utility for security analysts and privacy-conscious users to safely inspect untrusted PDF attachments, purge information disclosures, and lock down confidential documents with robust cryptography.",
       threatModel: [
@@ -326,92 +437,85 @@ export const projectsData: ProjectItem[] = [
   },
 ];
 
+export const achievementsList: AchievementItem[] = [
+  {
+    id: "thm-top-2",
+    title: "Top 2% Globally on TryHackMe",
+    subtitle: "Demonstrated competitive percentile standing across global practitioners",
+    category: "TryHackMe",
+    metric: "Top 2%",
+    highlight: true,
+  },
+  {
+    id: "thm-100-labs",
+    title: "100+ Completed Security Labs",
+    subtitle: "Hands-on rooms in SOC L1 triage, network exploitation, and forensics",
+    category: "Practical Labs",
+    metric: "100+",
+    highlight: true,
+  },
+  {
+    id: "thm-badges",
+    title: "20+ Badges Earned",
+    subtitle: "Specialized badges covering defense, exploitation, forensics & OSINT",
+    category: "Certifications",
+    metric: "20+",
+    highlight: false,
+  },
+  {
+    id: "thm-streak",
+    title: "100+ Day Learning Streak",
+    subtitle: "Continuous daily hands-on solving and defensive methodology practice",
+    category: "Dedication",
+    metric: "100+ Days",
+    highlight: true,
+  },
+  {
+    id: "thm-leagues",
+    title: "Rank 1 in Bronze, Silver, & Gold Leagues",
+    subtitle: "Achieved 1st place in consecutive TryHackMe competitive league standings",
+    category: "Competitions",
+    metric: "Rank 1",
+    highlight: true,
+  },
+  {
+    id: "bca-rank-1",
+    title: "BCA Semester 1 Rank 1",
+    subtitle: "Top academic standing in undergraduate computer applications program",
+    category: "Academics",
+    metric: "Rank 1",
+    highlight: true,
+  },
+];
+
 export const certificationsList: Certification[] = [
   {
     id: "vrsecurity-csfp",
     title: "Cyber Security Fundamentals Program (CSFP)",
     issuer: "VRSecurity",
-    date: "Sep 2026",
+    date: "September 2026",
     credentialId: "ID-VRS-008",
     honors: "GRAND MASTER",
     verificationUrl: "https://www.vrsecurity.in/CERT/ID-VRS-008.pdf",
     competencies: [
-      "SOC event monitoring in Wazuh SIEM",
+      "Monitored security events in Wazuh SIEM",
       "Network reconnaissance with Nmap, Nikto, Nuclei & Wireshark",
-      "Malicious network anomaly prioritization & escalation",
-      "Exposed port & vulnerable service enumeration",
+      "Prioritized and escalated malicious network anomalies",
+      "Identified exposed ports and potentially vulnerable services",
     ],
   },
   {
     id: "hackviser-core",
     title: "Certified Cybersecurity Foundations (CORE)",
     issuer: "Hackviser",
-    date: "Jul 2026",
+    date: "July 2026",
     credentialId: "HV-CORE-HO4ESOYZ",
     verificationUrl: "https://hackviser.com/verify/HV-CORE-HO4ESOYZ",
     competencies: [
-      "Core Cybersecurity Terminology & Architecture",
-      "Network Security & Protocol Fundamentals",
-      "Vulnerability Analysis & Attack Vectors",
-      "Security Operations & Defensive Mechanisms",
-      "Cryptography & Identity Protection Basics",
-    ],
-  },
-];
-
-export const skillCategoriesData: SkillCategory[] = [
-  {
-    id: "networking-security",
-    category: "Networking & Security",
-    description: "Core protocols, packet framing, and network infrastructure fundamentals.",
-    skills: [
-      { name: "TCP/IP & OSI Model", role: "Layered architecture, packet lifecycle, and handshake analysis", proficiency: "Practical" },
-      { name: "DNS & DHCP", role: "Domain resolution, record analysis, and IP allocation", proficiency: "Practical" },
-      { name: "HTTP / HTTPS", role: "Web application transport, TLS inspection, and header analysis", proficiency: "Practical" },
-      { name: "SSH & FTP", role: "Secure remote administration and transport protocols", proficiency: "Practical" },
-      { name: "Subnetting & Port Scanning", role: "IPv4/IPv6 address segmentation and service discovery", proficiency: "Practical" },
-    ],
-  },
-  {
-    id: "soc-threat-defense",
-    category: "SOC & Threat Defense",
-    description: "Security operations, event monitoring, alert triage, and incident response.",
-    skills: [
-      { name: "Wazuh SIEM", role: "Security event surveillance, rule matches, and agent telemetry", proficiency: "Practical" },
-      { name: "Alert Triage", role: "Prioritizing and escalating verified network anomalies", proficiency: "Practical" },
-      { name: "Incident Response", role: "Containment logic, evidence triage, and escalation procedures", proficiency: "Practical" },
-      { name: "Network Traffic Analysis", role: "PCAP inspection, protocol anomaly detection, stream following", proficiency: "Practical" },
-      { name: "Digital & Email Forensics", role: "MIME transit reconstruction, SPF/DKIM validation, artifact analysis", proficiency: "Practical" },
-      { name: "VAPT & IOC Extraction", role: "Vulnerability assessment and Indicator of Compromise extraction", proficiency: "Practical" },
-      { name: "OSINT", role: "Open-source intelligence gathering and threat reconnaissance", proficiency: "Practical" },
-    ],
-  },
-  {
-    id: "security-tools",
-    category: "Security Tools",
-    description: "Industry-standard diagnostic and auditing utilities.",
-    skills: [
-      { name: "Wireshark", role: "Deep packet inspection and protocol decoding", proficiency: "Practical" },
-      { name: "Nmap", role: "Network discovery, port scanning, and NSE scripts", proficiency: "Practical" },
-      { name: "Burp Suite", role: "Web proxy interception and application security testing", proficiency: "Practical" },
-      { name: "Metasploit", role: "Auxiliary modules and controlled exploit verification", proficiency: "Practical" },
-      { name: "SQLmap", role: "Automated SQL injection testing and validation", proficiency: "Practical" },
-      { name: "Nikto & Nuclei", role: "Web server misconfiguration and template vulnerability scanning", proficiency: "Practical" },
-      { name: "WPScan & Hydra", role: "CMS vulnerability scanning and logon security testing", proficiency: "Practical" },
-      { name: "Kali Linux CLI", role: "Primary Linux offensive and defensive testing environment", proficiency: "Practical" },
-    ],
-  },
-  {
-    id: "programming-scripting",
-    category: "Programming & Scripting",
-    description: "Languages used for defensive tooling, parsers, and automation.",
-    skills: [
-      { name: "Python", role: "Security scripts, CLI tools, ML models, and FastAPI backends", proficiency: "Practical" },
-      { name: "Go (Golang)", role: "High-performance MIME parsers and concurrent network utilities", proficiency: "Practical" },
-      { name: "Bash & PowerShell", role: "Linux and Windows automation, log triage, and scripting", proficiency: "Practical" },
-      { name: "C & C++", role: "System-level concepts, memory management, and socket basics", proficiency: "Working Knowledge" },
-      { name: "Java & JavaScript", role: "Application development, REST APIs, and forensic visualizations", proficiency: "Practical" },
-      { name: "PHP & SQL", role: "Web application backend testing, database queries, and hardening", proficiency: "Practical" },
+      "Core cybersecurity terminology, concepts & architectural models",
+      "Network security protocols, transport security & defense foundations",
+      "Vulnerability assessment methodologies & attack vector categorization",
+      "Defensive security operations & security monitoring principles",
     ],
   },
 ];
@@ -420,10 +524,10 @@ export const educationData: EducationInfo = {
   degree: "Bachelor of Computer Applications (BCA)",
   institution: "Bhakta Kavi Narsinh Mehta University",
   location: "Gujarat, India",
-  period: "2023 – 2026",
+  period: "2023–2026",
   cgpa: "8.30",
   scale: "/ 10",
-  academicHonor: "Sem 1 Rank 1",
+  academicHonor: "Semester 1 Rank 1",
   coursework: [
     "Computer Networks & Data Communications",
     "Operating Systems & Linux Architecture",

@@ -1,43 +1,58 @@
-# ISHΛ // SECURITY LAB — Cybersecurity & SOC Analyst Portfolio
+# Isha Sonaria — Cybersecurity Portfolio (Modern Light UI)
 
-[![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8.x-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-4.x-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![TryHackMe](https://img.shields.io/badge/TryHackMe-Top%202%25-red?logo=tryhackme&logoColor=white)](https://tryhackme.com/p/CipherGhost24)
 
-> High-performance, single-page cybersecurity portfolio engineered for SOC L1 operations, threat detection, ethical hacking, digital forensics, and network analysis.
+> Premium, minimal, recruiter-ready light-themed cybersecurity portfolio for **Isha Sonaria** showcasing SOC Tier-1 operations, threat detection, network analysis, open-source security tools, and verified achievements.
 
 ---
 
-## ⚡ Featured Security Engineering Projects
-
-1. **[SubScope](https://github.com/ishasonaria568-prog/SubScope)** — High-Performance Multithreaded Subdomain Enumeration & Surface Scanner *(Python / Concurrent DNS / HTTP Probing)*.
-2. **[pdf-fortress](https://github.com/ishasonaria568-prog/pdf-fortress)** — Defensive PDF Security, Stream Analysis & AES-256 Hardening *(Python & TypeScript / GUI & CLI)*.
-3. **[PhishGuard](https://github.com/ishasonaria568-prog/phishguard-ml)** — Offline ML-Based Phishing URL Detection & Feature Anatomy Engine *(Python / FastAPI / scikit-learn)*.
-4. **[Email Header Forensics](https://github.com/ishasonaria568-prog/email-header-forensics)** — RFC 5322 Email Transport & Authentication Analyzer *(Go / MIME Parsing / SPF & DKIM)*.
-5. **[College Voting Portal Secure](https://github.com/ishasonaria568-prog/college-voting-portal-secure)** — Tamper-Resistant Role-Based Electronic Ballot System with SHA-256 Receipts *(React / FastAPI / Cryptography)*.
-
----
-
-## 🛡️ Operator Highlights
-
-- **Operator**: Isha Sonaria (Veraval, Gujarat, India)
-- **Academics**: Bachelor of Computer Applications (BCA), Bhakta Kavi Narsinh Mehta University • CGPA: 8.30 (1st Ranker Sem 1)
-- **Certifications**: Certified Cybersecurity Foundations (CORE) — Hackviser (`HV-CORE-HO4ESOYZ`)
-- **TryHackMe Standing**: Top 2% Globally • 147+ Completed Rooms • 105-Day Active Streak • 1st Place Champion in Bronze, Silver & Gold Competitive Leagues
+## 🎨 Design Theme: Modern Light UI
+- **Palette**:
+  - Main background: `#F8FAFC`
+  - Section background: `#FFFFFF`
+  - Primary text: `#0F172A`
+  - Secondary text: `#64748B`
+  - Primary accent: `#2563EB` (Blue)
+  - Security accent: `#059669` (Emerald)
+  - Borders: `#E2E8F0`
+  - Subtle card background: `#F1F5F9`
+- Clean navy typography, blue interactive buttons, emerald-green security indicators, rounded cards, and generous whitespace.
 
 ---
 
-## 🚀 Quick Start / Local Setup
+## ⚡ Featured Projects
+1. **PhishGuard ML** — Offline ML-based phishing URL detector using Random Forest and 16 static URL features. Safe, Suspicious, or Phishing classification with batch scanning.
+   - [GitHub](https://github.com/ishasonaria568-prog/phishguard-ml) · [Live Demo](https://phishguard-ml-six.vercel.app)
+2. **Email Header Forensics** — Analyzes sender domains, email authentication, mail-routing hops, and Reply-To mismatches. 0–100 risk score and JSON export.
+   - [GitHub](https://github.com/ishasonaria568-prog/email-header-forensics) · [Live Demo](https://email-header-forensics.vercel.app)
+3. **SubScope** — Multithreaded CLI for subdomain enumeration, DNS resolution, HTTP/HTTPS verification, and reporting.
+   - [GitHub](https://github.com/ishasonaria568-prog/SubScope)
+4. **PDF Fortress** — PDF password protection, document hardening, metadata stripping, and object stream verification.
+   - [GitHub](https://github.com/ishasonaria568-prog/pdf-fortress) · [Live Demo](https://pdf-fortress.vercel.app)
 
-Clone and run locally in under 2 minutes:
+---
+
+## 🛡️ Candidate Profile
+- **Candidate**: Isha Sonaria (Veraval, Gujarat, India)
+- **Role Focus**: SOC Analyst L1, Blue Team, Defensive Security, Network Security
+- **Education**: Bachelor of Computer Applications (BCA), Bhakta Kavi Narsinh Mehta University (8.30/10 CGPA, Semester 1 Rank 1)
+- **Certifications**:
+  - Cyber Security Fundamentals Program (CSFP) — VRSecurity (GRAND MASTER, ID-VRS-008)
+  - Certified Cybersecurity Foundations (CORE) — Hackviser (HV-CORE-HO4ESOYZ)
+- **TryHackMe**: Top 2% Globally, 100+ Completed Labs, 20+ Badges, 100+ Day Streak, Rank 1 in Bronze, Silver, and Gold leagues.
+
+---
+
+## 🚀 Local Installation & Setup
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/ishasonaria568-prog/cybersecurity-portfolio.git
-cd cybersecurity-portfolio
+git clone https://github.com/ishasonaria568-prog/Isha-Sonaria-Portfolio.git
+cd Isha-Sonaria-Portfolio
 
 # 2. Install dependencies
 npm install
@@ -46,37 +61,19 @@ npm install
 npm run dev
 ```
 
-Visit `http://localhost:3000` in your browser.
+The app will start on `http://localhost:3000`.
 
 ---
 
-## 📦 Build & Deployment
+## 📦 Build & Deployment (Vercel)
 
 ```bash
-# Production Build
+# Build production bundle
 npm run build
 
-# Preview Production Build locally
+# Run linter / TypeScript check
+npm run lint
+
+# Preview build locally
 npm run preview
 ```
-
-### Deploy to Vercel / Netlify / GitHub Pages
-- **Framework Preset**: Vite
-- **Root Directory**: `./`
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist`
-
----
-
-## 🎨 Interactive Capabilities
-
-- **Interactive CLI Terminal**: Functional in-browser shell (`help`, `whoami`, `thm`, `projects`, `subscope`, `pdf-fortress`, `nmap`).
-- **Live Simulators**: Real-time simulation of SubScope multithreaded reconnaissance and PDF stream quarantine.
-- **Theme Palette Switcher**: 5 color palettes (Electric Cobalt Blue, Cyber Cyan, Matrix Emerald, Neon Violet, Red Team).
-- **Automated PDF Resume Generator**: Client-side A4 resume generation via jsPDF.
-
----
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.

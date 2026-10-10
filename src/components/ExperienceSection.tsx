@@ -1,66 +1,87 @@
 import React from 'react';
 import { practicalExperiences } from '../data/portfolioData';
-import { Briefcase, Shield, CheckCircle2, Calendar, Award } from 'lucide-react';
+import {
+  Briefcase,
+  Calendar,
+  CheckCircle2,
+  Award,
+  ShieldCheck,
+  Terminal,
+  Trophy
+} from 'lucide-react';
 
 export const ExperienceSection: React.FC = () => {
   return (
-    <section id="experience" className="py-16 sm:py-24 border-b border-[#231F3D] bg-[#0E0C1A]">
+    <section id="experience" className="py-16 sm:py-24 bg-white border-b border-[#E2E8F0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
+        {/* Section Header */}
         <div className="max-w-3xl mb-12">
-          <span className="text-xs font-semibold text-[#8B5CF6] uppercase tracking-wider font-mono">
+          <span className="text-xs font-semibold text-[#2563EB] uppercase tracking-wider font-mono">
             Practical Security Training &amp; Roles
           </span>
-          <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-[#F8FAFC] tracking-tight">
-            Security Experience &amp; Training
+          <h2 className="mt-2 text-3xl sm:text-4xl font-display font-bold text-[#0F172A] tracking-tight">
+            Experience and Training
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
-            Hands-on SOC operations, network anomaly prioritization, and adversarial problem-solving across structured industry training programs and competitive platforms.
+          <p className="mt-4 text-base sm:text-lg text-[#64748B] leading-relaxed">
+            Practical security operations, telemetry triage, network anomaly prioritization, and adversarial problem-solving across structured industry programs and competitive platforms.
           </p>
         </div>
 
-        {/* Experience Cards Grid */}
+        {/* Vertical Professional Experience Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {practicalExperiences.map((exp) => (
             <div
               key={exp.id}
-              className="sec-card p-6 sm:p-8 flex flex-col justify-between hover:border-[#8B5CF6]/40 transition-colors"
+              className="bg-[#F8FAFC] rounded-2xl border border-[#E2E8F0] p-6 sm:p-8 shadow-xs hover:shadow-md hover:border-[#CBD5E1] transition-all flex flex-col justify-between"
             >
               <div>
-                {/* Header */}
-                <div className="flex items-start justify-between gap-4 pb-4 border-b border-[#231F3D]">
-                  <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-xl bg-[#17142E] border border-[#231F3D] flex items-center justify-center text-[#8B5CF6]">
-                      <Briefcase className="w-5 h-5" />
+                {/* Header Info */}
+                <div className="flex items-start justify-between gap-4 pb-5 border-b border-[#E2E8F0]">
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center text-[#2563EB] shrink-0 shadow-xs">
+                      {exp.id.includes('soc') ? (
+                        <ShieldCheck className="w-6 h-6 text-[#2563EB]" />
+                      ) : (
+                        <Trophy className="w-6 h-6 text-[#059669]" />
+                      )}
                     </div>
                     <div>
-                      <h3 className="text-lg font-display font-bold text-[#F8FAFC]">
+                      <h3 className="text-lg sm:text-xl font-display font-bold text-[#0F172A]">
                         {exp.role}
                       </h3>
-                      <span className="text-xs font-semibold text-[#22D3EE] font-mono">
+                      <div className="text-xs sm:text-sm font-semibold text-[#2563EB] mt-0.5">
                         {exp.organization}
-                        {exp.program && ` · ${exp.program}`}
-                      </span>
+                        {exp.program && (
+                          <span className="text-[#64748B] font-normal">
+                            {' '}
+                            · {exp.program}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
+
                   {exp.badge && (
-                    <span className="px-2.5 py-1 rounded-md text-[11px] font-mono font-bold text-[#C4B5FD] bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 shrink-0">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 shrink-0">
                       {exp.badge}
                     </span>
                   )}
                 </div>
 
-                {/* Period */}
-                <div className="pt-3 flex items-center gap-1.5 text-xs font-mono text-[#A1A1AA]">
-                  <Calendar className="w-3.5 h-3.5 text-[#71717A]" />
+                {/* Period Date Tag */}
+                <div className="pt-4 flex items-center gap-1.5 text-xs font-mono text-[#64748B]">
+                  <Calendar className="w-3.5 h-3.5 text-[#94A3B8]" />
                   <span>{exp.period}</span>
                 </div>
 
-                {/* Bullets */}
-                <div className="mt-4 pt-3 border-t border-[#231F3D]/60 space-y-2.5">
+                {/* Bullet Points with Green Achievement Indicators */}
+                <div className="mt-4 pt-3 border-t border-[#E2E8F0] space-y-3">
                   {exp.points.map((pt, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#F8FAFC] leading-relaxed">
-                      <CheckCircle2 className="w-4 h-4 text-[#8B5CF6] shrink-0 mt-0.5" />
+                    <div
+                      key={idx}
+                      className="flex items-start gap-3 text-sm text-[#334155] leading-relaxed"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-[#059669] shrink-0 mt-0.5" />
                       <span>{pt}</span>
                     </div>
                   ))}
@@ -68,8 +89,11 @@ export const ExperienceSection: React.FC = () => {
               </div>
 
               {/* Card Footer */}
-              <div className="mt-6 pt-3 border-t border-[#231F3D] flex items-center justify-between text-[11px] font-mono text-[#71717A]">
-                <span>Verified Practical Training</span>
+              <div className="mt-8 pt-4 border-t border-[#E2E8F0] flex items-center justify-between text-xs font-mono text-[#64748B]">
+                <span className="inline-flex items-center gap-1.5 text-emerald-700 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  Verified Hands-on Track
+                </span>
                 <span>Documented in Official Resume</span>
               </div>
             </div>
