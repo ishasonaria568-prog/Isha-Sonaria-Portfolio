@@ -1,67 +1,61 @@
 import React, { useState, useEffect } from 'react';
-import { ThemeProvider } from './context/ThemeContext';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { StatementSection } from './components/StatementSection';
+import { AboutSection } from './components/AboutSection';
+import { ExperienceSection } from './components/ExperienceSection';
 import { ProjectsSection } from './components/ProjectsSection';
-import { PillarsSection } from './components/PillarsSection';
-import { FieldNotesSection } from './components/FieldNotesSection';
-import { FactsSection } from './components/FactsSection';
-import { ToolArsenalSection } from './components/ToolArsenalSection';
 import { CertificationSection } from './components/CertificationSection';
+import { TryHackMeSection } from './components/TryHackMeSection';
+import { SkillsSection } from './components/SkillsSection';
+import { EducationSection } from './components/EducationSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
-import { InteractiveTerminalModal } from './components/InteractiveTerminalModal';
-import { GitHubDeployModal } from './components/GitHubDeployModal';
 
 const SECTIONS = [
-  { id: 'profile', tab: 'ask' },
-  { id: 'projects', tab: 'projects' },
-  { id: 'themen', tab: 'themen' },
-  { id: 'facts', tab: 'facts' },
-  { id: 'arsenal', tab: 'arsenal' },
-  { id: 'credentials', tab: 'credentials' },
-  { id: 'contact', tab: 'contact' },
+  'home',
+  'about',
+  'experience',
+  'projects',
+  'certifications',
+  'tryhackme',
+  'skills',
+  'education',
+  'contact',
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<string>('ask');
+  const [activeSection, setActiveSection] = useState<string>('home');
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
-  const [isGitHubModalOpen, setIsGitHubModalOpen] = useState(false);
 
   // Smooth scroll handler with header offset
-  const handleSelectTab = (targetId: string) => {
-    let resolvedId = targetId;
-    if (targetId === 'ask') resolvedId = 'profile';
-
-    if (resolvedId === 'profile') {
+  const handleNavigate = (targetId: string) => {
+    if (targetId === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      setActiveTab('ask');
+      setActiveSection('home');
       return;
     }
 
-    const element = document.getElementById(resolvedId);
+    const element = document.getElementById(targetId);
     if (element) {
-      const headerOffset = 80;
+      const headerOffset = 76;
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({
         top: Math.max(0, elementPosition - headerOffset),
         behavior: 'smooth',
       });
-      setActiveTab(targetId);
+      setActiveSection(targetId);
     }
   };
 
-  // Scroll Spy to highlight active section in navbar as user scrolls
+  // Scroll spy to highlight active section in navbar as user scrolls
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 160;
+      const scrollPos = window.scrollY + 140;
       for (let i = SECTIONS.length - 1; i >= 0; i--) {
-        const sec = document.getElementById(SECTIONS[i].id);
+        const sec = document.getElementById(SECTIONS[i]);
         if (sec && scrollPos >= sec.offsetTop) {
-          setActiveTab(SECTIONS[i].tab);
+          setActiveSection(SECTIONS[i]);
           break;
         }
       }
@@ -72,74 +66,60 @@ export default function App() {
   }, []);
 
   return (
-    <ThemeProvider>
-      <div className="min-h-screen bg-white dark:bg-[#090e17] text-[#0c1620] dark:text-[#f1f5f9] font-sans relative selection:bg-[#ff5a36]/20 selection:text-[#0c1620] dark:selection:text-white transition-colors">
-        {/* Skip to Content Accessibility Link (matching pw.is) */}
-        <a href="#profile" className="skip-link">
-          Skip to main content
-        </a>
+    <div className="min-h-screen bg-[#0B0A14] text-[#F8FAFC] font-sans relative selection:bg-[#8B5CF6]/30 selection:text-[#F8FAFC]">
+      {/* Skip to Content Accessibility Link */}
+      <a href="#about" className="skip-link">
+        Skip to main content
+      </a>
 
-        {/* Site Header */}
-        <Header
-          activeTab={activeTab}
-          onSelectTab={handleSelectTab}
+      {/* Sticky Top Navigation Bar */}
+      <Header
+        activeSection={activeSection}
+        onNavigate={handleNavigate}
+        onOpenResume={() => setIsResumeOpen(true)}
+      />
+
+      {/* Main Content Sections */}
+      <main id="main" className="relative z-10">
+        {/* Hero Section: Two-Column Identity + Professional Summary */}
+        <Hero
+          onNavigate={handleNavigate}
           onOpenResume={() => setIsResumeOpen(true)}
-          onOpenTerminal={() => setIsTerminalOpen(true)}
         />
 
-        {/* Main Content Area */}
-        <main id="main" className="relative z-10">
-          {/* Hero & Interactive Ask Dossier */}
-          <Hero
-            onSelectTab={handleSelectTab}
-            onOpenResume={() => setIsResumeOpen(true)}
-            onOpenTerminal={() => setIsTerminalOpen(true)}
-          />
+        {/* Dedicated About Me Section */}
+        <AboutSection onNavigate={handleNavigate} />
 
-          {/* Statement & Verification Guarantee */}
-          <StatementSection />
+        {/* Practical Security Experience / Training */}
+        <ExperienceSection />
 
-          {/* Projects Series */}
-          <ProjectsSection />
+        {/* Featured Projects Showcase with Live & Code Links */}
+        <ProjectsSection />
 
-          {/* Pillars & Commitments ("What Isha Stands For") */}
-          <PillarsSection onSelectTab={handleSelectTab} />
+        {/* Verified Certifications Section (Hackviser & VR Security) */}
+        <CertificationSection onOpenResume={() => setIsResumeOpen(true)} />
 
-          {/* Field Notes ("Digital Defense To-Go") */}
-          <FieldNotesSection />
+        {/* TryHackMe Achievements & Lab Record */}
+        <TryHackMeSection />
 
-          {/* Facts & Entity Dossier */}
-          <FactsSection />
+        {/* Categorized Skills & Security Toolkit */}
+        <SkillsSection />
 
-          {/* Tool Arsenal */}
-          <ToolArsenalSection />
+        {/* Education Section (BCA Degree & Coursework) */}
+        <EducationSection />
 
-          {/* Verified Credentials & Academic Honors */}
-          <CertificationSection onOpenResume={() => setIsResumeOpen(true)} />
+        {/* Contact Section for Recruiters & Security Teams */}
+        <ContactSection />
+      </main>
 
-          {/* Contact & Inquiries */}
-          <ContactSection />
-        </main>
+      {/* Minimal Footer */}
+      <Footer onNavigate={handleNavigate} />
 
-        {/* Site Footer */}
-        <Footer onSelectTab={handleSelectTab} />
-
-        {/* Modals */}
-        <ResumeModal
-          isOpen={isResumeOpen}
-          onClose={() => setIsResumeOpen(false)}
-        />
-
-        <InteractiveTerminalModal
-          isOpen={isTerminalOpen}
-          onClose={() => setIsTerminalOpen(false)}
-        />
-
-        <GitHubDeployModal
-          isOpen={isGitHubModalOpen}
-          onClose={() => setIsGitHubModalOpen(false)}
-        />
-      </div>
-    </ThemeProvider>
+      {/* Resume Dossier & PDF Download Modal */}
+      <ResumeModal
+        isOpen={isResumeOpen}
+        onClose={() => setIsResumeOpen(false)}
+      />
+    </div>
   );
 }
